@@ -1,0 +1,19 @@
+.header {
+  @apply bg-red-600 w-full fixed;
+}
+
+.toolbar {
+  @apply flex items-center h-16 px-6 justify-between;
+}
+
+.main {
+  @apply flex h-screen max-w-7xl mx-auto;
+}
+
+.navBar {
+  @apply bg-blue-600 w-80 p-6;
+}
+
+.feed {
+  @apply bg-yellow-400 w-full p-6;
+}
