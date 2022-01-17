@@ -7,7 +7,7 @@
 }
 
 .main {
-  @apply flex h-screen max-w-7xl mx-auto;
+  @apply flex h-screen max-w-screen-2xl mx-auto;
 }
 
 .navBar {
