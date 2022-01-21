@@ -17,3 +17,7 @@
 .feed {
   @apply bg-yellow-400 w-full p-6;
 }
+
+.buttonAppBar {
+  @apply pr-4;
+}
