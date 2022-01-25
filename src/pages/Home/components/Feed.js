@@ -39,7 +39,7 @@ const posts = [
     description:
       "Iremos utilizar diversas ferramentas durante o desenvolvimento, dentre elas está o Tailwindcss que é um excelente frameword css",
     hashtags: "#javascript, #reactjs, #webdev, #vscode, #tailwindcss",
-    image: "/images/posts/post8.jpeg",
+    image: "/images/posts/post1.png",
   },
 ];
 
