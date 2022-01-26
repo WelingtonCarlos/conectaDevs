@@ -1,7 +1,137 @@
 import React from "react";
 
+import { makeStyles } from "@material-ui/styles";
+
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
+import LockIcon from "@mui/icons-material/Lock";
+import { blue } from "@mui/material/colors";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
+import { ResetTvRounded } from "@mui/icons-material";
+
+const useStyles = makeStyles({
+  signin: {
+    height: "100vh",
+  },
+  image: {
+    backgroundImage: "url(images/background.jpg)",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "none",
+  },
+  form: {
+    margin: "64px 32px",
+  },
+  marginBtn: {
+    margin: "16px 0",
+  },
+});
+
+function Copyright() {
+  return (
+    <Typography variant="body2" align="center">
+      {"Copyright © "}
+      <a color="inherit" href="https://github.com/WelingtonCarlos/conectaDevs">
+        Welington Filho
+      </a>{" "}
+      {new Date().getFullYear()}
+    </Typography>
+  );
+}
+
 function SignIn() {
-  return <h1>Login Component</h1>;
+  const classes = useStyles();
+  return (
+    <Grid container className={classes.signin}>
+      <Grid
+        item
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        textAlign="center"
+        padding="0 30px"
+        md={7}
+        className={classes.image}
+      >
+        <Typography style={{ color: "#fff", fontSize: 35, lineHeight: "45px" }}>
+          <strong>
+            Simplificando a forma de conectar desenvolvedores de software!
+          </strong>
+        </Typography>
+        <Typography
+          variant="body2"
+          style={{
+            color: "rgb(255,255,255, 0.7)",
+            marginTop: 30,
+            fontSize: 15,
+            lineHeight: "30px",
+          }}
+        >
+          Compartilhe seu conhecimento com toda nossa rede de desenvolvedores de
+          software!
+        </Typography>
+      </Grid>
+      <Grid item md={5} marginX="auto">
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          mt={8}
+        >
+          <Avatar sx={{ bgcolor: blue[500] }}>
+            <LockIcon />
+          </Avatar>
+          <Typography mt={2} variant="h6">
+            Entrar
+          </Typography>
+          <form className={classes.form}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="E-mail"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="password"
+              label="Senha"
+              type="password"
+              name="password"
+              autoComplete="current-password"
+            />
+            <div className={classes.marginBtn}>
+              <Button fullWidth variant="contained" color="primary">
+                Entrar
+              </Button>
+            </div>
+            <Grid container marginTop="16px">
+              <Grid item>
+                <Link>Esqueceu sua senha?</Link>
+              </Grid>
+              <Grid item>
+                <Link>Não tem uma conta? Registre-se agora.</Link>
+              </Grid>
+            </Grid>
+          </form>
+          <Copyright />
+        </Box>
+      </Grid>
+    </Grid>
+  );
 }
 
 export default SignIn;
