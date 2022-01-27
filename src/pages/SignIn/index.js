@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import Typography from "@mui/material/Typography";
+
+import authService from "../../services/authServices";
 
 import { makeStyles } from "@material-ui/styles";
-
-import Typography from "@mui/material/Typography";
+import { blue } from "@mui/material/colors";
+import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import LockIcon from "@mui/icons-material/Lock";
-import { blue } from "@mui/material/colors";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
-import { ResetTvRounded } from "@mui/icons-material";
+import FormHelperText from "@mui/material/FormHelperText";
 
 const useStyles = makeStyles({
   signin: {
@@ -45,6 +47,31 @@ function Copyright() {
 
 function SignIn() {
   const classes = useStyles();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  //----------------------------------------------//
+
+  /* EVENTO PARA O BOTÃO DE LOGIN */
+
+  async function handleSignIn() {
+    /* Chamada da API, se tudo estiver certo, o usuário será direcionado 
+    para a Home, senão será exibida uma mensagem 
+    obj promise */
+
+    try {
+      await authService.signIn(email, password);
+      // ?? 200
+      navigate("/");
+    } catch (error) {
+      setErrorMessage(error.response.data.message);
+    }
+  }
+
+  //----------------------------------------------//
+
   return (
     <Grid container className={classes.signin}>
       <Grid
@@ -101,6 +128,8 @@ function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
             <TextField
               variant="outlined"
@@ -112,12 +141,22 @@ function SignIn() {
               type="password"
               name="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
             />
             <div className={classes.marginBtn}>
-              <Button fullWidth variant="contained" color="primary">
+              <Button
+                onClick={handleSignIn}
+                fullWidth
+                variant="contained"
+                color="primary"
+              >
                 Entrar
               </Button>
             </div>
+            {errorMessage && (
+              <FormHelperText error>{errorMessage}</FormHelperText>
+            )}
             <Grid container marginTop="16px">
               <Grid item>
                 <Link>Esqueceu sua senha?</Link>
