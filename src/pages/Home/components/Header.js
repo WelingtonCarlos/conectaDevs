@@ -50,14 +50,6 @@ function Header() {
           </SvgIcon>
           <Avatar alt="" src="" />
         </div>
-        {/* <div>
-          <span>Conecta Dev</span>
-        </div>
-        <div>
-          <Button>Novo Post</Button>
-          <span>img2</span>
-          <span>img2</span>
-        </div> */}
       </Toolbar>
     </AppBar>
   );

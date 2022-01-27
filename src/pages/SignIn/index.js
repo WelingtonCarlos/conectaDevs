@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import Typography from "@mui/material/Typography";
 
+import Typography from "@mui/material/Typography";
 import authService from "../../services/authServices";
 
 import { makeStyles } from "@material-ui/styles";
 import { blue } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
+
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
@@ -62,6 +63,8 @@ function SignIn() {
     obj promise */
 
     try {
+      // email e password são variáveis que pegam os dados
+      // digitados nos textfield de email e password
       await authService.signIn(email, password);
       // ?? 200
       navigate("/");
