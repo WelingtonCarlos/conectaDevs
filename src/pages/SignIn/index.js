@@ -2,10 +2,12 @@ import React, { useState } from "react";
 
 import Typography from "@mui/material/Typography";
 import authService from "../../services/authServices";
+import signIn from "../../actions/accountActions";
 
 import { makeStyles } from "@material-ui/styles";
 import { blue } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -52,6 +54,8 @@ function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const dispatch = useDispatch();
+  const account = useSelector((state) => state);
 
   //----------------------------------------------//
 
@@ -65,7 +69,7 @@ function SignIn() {
     try {
       // email e password são variáveis que pegam os dados
       // digitados nos textfield de email e password
-      await authService.signIn(email, password);
+      await dispatch(signIn(email, password));
       // ?? 200
       navigate("/");
     } catch (error) {

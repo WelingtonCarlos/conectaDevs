@@ -6,6 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 import SvgIcon from "@mui/material/SvgIcon";
 import Avatar from "@mui/material/Avatar";
 
+import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/styles";
 import { Bell } from "react-feather";
 
@@ -32,6 +33,9 @@ const useStyles = makeStyles({
 
 function Header() {
   const classes = useStyles();
+  const user = useSelector((state) => state.user);
+  console.log(user);
+
   return (
     <AppBar className={classes.appBar} position="fixed" color="inherit">
       <Toolbar>
@@ -48,7 +52,8 @@ function Header() {
           <SvgIcon className={classes.bell}>
             <Bell></Bell>
           </SvgIcon>
-          <Avatar alt="" src="" />
+          {/*Se existir um usuário ele irá preencher com a imagem do usuário no avatar*/}
+          <Avatar alt="Remy Sharp" src={user && user.avatar} />
         </div>
       </Toolbar>
     </AppBar>
